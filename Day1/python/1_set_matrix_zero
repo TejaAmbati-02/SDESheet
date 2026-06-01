@@ -1,0 +1,23 @@
+# Brute force Approach
+class Solution:
+    def brute_force_setZeroes(self, matrix):
+        rows = len(matrix)
+        cols = len(matrix[0])
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j] == 0:
+                    for col in range(cols):
+                        if matrix[i][col] != 0:
+                            matrix[i][col] = 'X'
+                    for row in range(rows):
+                        if matrix[row][j] != 0:
+                            matrix[row][j] = 'X'
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j] == 'X':
+                    matrix[i][j] = 0
+
+matrix = [[1,1,1],[1,0,1],[1,1,1]]
+solution = Solution()
+solution.brute_force_setZeroes(matrix)
+print(matrix)
