@@ -25,8 +25,8 @@ class Solution:
 
 
     def optimal_approach_pascal_triangle(self, row_num, col_num):
-        n = r - 1
-        k = c - 1
+        n = row_num - 1
+        k = col_num - 1
 
         result = 1
 
