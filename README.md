@@ -17,10 +17,14 @@ SDESheet/
 │   ├── 1_set_matrix_zero        # Set Matrix Zeroes
 │   ├── 2_pascal_triangle.py     # Pascal's Triangle
 │   └── 3_next_permutation.py    # Next Permutation
-└── Day2/
-    ├── 1_kadane_s_algorithm_maximum_subarray_sum_in_an_array.py   # Maximum Subarray Sum
-    ├── 2_sort_an_array_of_0s_1s_and_2s.py                         # Sort 0s, 1s and 2s
-    └── 3_stock_buy_and_sell.py                                    # Best Time to Buy and Sell Stock
+├── Day2/
+│   ├── 1_kadane_s_algorithm_maximum_subarray_sum_in_an_array.py   # Maximum Subarray Sum
+│   ├── 2_sort_an_array_of_0s_1s_and_2s.py                         # Sort 0s, 1s and 2s
+│   └── 3_stock_buy_and_sell.py                                    # Best Time to Buy and Sell Stock
+└── Day3/
+    ├── 1_Rotate_omage_by_90_degree.py                            # Rotate Image by 90°
+    ├── 2_merge_overlapping_sub_intervals.py                      # Merge Overlapping Intervals
+    └── 3_merge_two_sorted_arrays_without_extra_space.py          # Merge Two Sorted Arrays
 ```
 
 ## Problems
@@ -74,6 +78,28 @@ Maximize profit from a single buy-then-sell.
 - **Brute force** — check every buy/sell pair. `O(N²)` time, `O(1)` space.
 - **Optimal** — track the minimum price seen so far and the best profit against it. `O(N)` time, `O(1)` space.
 
+### Day 3 — Arrays
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Rotate Image by 90°](Day3/1_Rotate_omage_by_90_degree.py) | Brute force, Optimal | O(N²) | O(1) |
+| 2 | [Merge Overlapping Intervals](Day3/2_merge_overlapping_sub_intervals.py) | Brute force, Optimal | O(N log N) | O(N) |
+| 3 | [Merge Two Sorted Arrays Without Extra Space](Day3/3_merge_two_sorted_arrays_without_extra_space.py) | Optimal | O(M+N) | O(1) |
+
+#### 1. Rotate Image by 90°
+Rotate an `N × N` matrix 90° clockwise.
+- **Brute force** — copy each element into a new matrix at its rotated position. `O(N²)` time, `O(N²)` space.
+- **Optimal** — transpose the matrix in place, then reverse each row. `O(N²)` time, `O(1)` space.
+
+#### 2. Merge Overlapping Intervals
+Given a list of intervals, merge all that overlap.
+- **Brute force** — sort, then for each interval scan ahead to absorb every overlapping neighbour. `O(N log N)` time, `O(N)` space.
+- **Optimal** — sort, then sweep once, extending the last merged interval or appending a new one. `O(N log N)` time, `O(N)` space.
+
+#### 3. Merge Two Sorted Arrays Without Extra Space
+Merge `nums2` into `nums1`, which has trailing space for the combined result.
+- **Optimal** — fill `nums1` from the back, comparing the largest remaining elements of both arrays. `O(M+N)` time, `O(1)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -84,6 +110,9 @@ python3 Day1/3_next_permutation.py
 python3 Day2/1_kadane_s_algorithm_maximum_subarray_sum_in_an_array.py
 python3 Day2/2_sort_an_array_of_0s_1s_and_2s.py
 python3 Day2/3_stock_buy_and_sell.py
+python3 Day3/1_Rotate_omage_by_90_degree.py
+python3 Day3/2_merge_overlapping_sub_intervals.py
+python3 Day3/3_merge_two_sorted_arrays_without_extra_space.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
