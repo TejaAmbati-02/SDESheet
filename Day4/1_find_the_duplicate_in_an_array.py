@@ -24,7 +24,6 @@ class Solution:
         slow = nums[0]
         fast = nums[0]
 
-        # move slow by 1 step and fast by 2 steps until they meet
         while True:
             slow = nums[slow]
             fast = nums[nums[fast]]
