@@ -21,10 +21,14 @@ SDESheet/
 │   ├── 1_kadane_s_algorithm_maximum_subarray_sum_in_an_array.py   # Maximum Subarray Sum
 │   ├── 2_sort_an_array_of_0s_1s_and_2s.py                         # Sort 0s, 1s and 2s
 │   └── 3_stock_buy_and_sell.py                                    # Best Time to Buy and Sell Stock
-└── Day3/
-    ├── 1_Rotate_omage_by_90_degree.py                            # Rotate Image by 90°
-    ├── 2_merge_overlapping_sub_intervals.py                      # Merge Overlapping Intervals
-    └── 3_merge_two_sorted_arrays_without_extra_space.py          # Merge Two Sorted Arrays
+├── Day3/
+│   ├── 1_Rotate_omage_by_90_degree.py                            # Rotate Image by 90°
+│   ├── 2_merge_overlapping_sub_intervals.py                      # Merge Overlapping Intervals
+│   └── 3_merge_two_sorted_arrays_without_extra_space.py          # Merge Two Sorted Arrays
+└── Day4/
+    ├── 1_find_the_duplicate_in_an_array.py                       # Find the Duplicate Number
+    ├── 2_find_the_repeating_and_missing_numbers.py               # Repeating and Missing Numbers
+    └── 3_count_inversions_in_an_array.py                         # Count Inversions
 ```
 
 ## Problems
@@ -100,6 +104,32 @@ Given a list of intervals, merge all that overlap.
 Merge `nums2` into `nums1`, which has trailing space for the combined result.
 - **Optimal** — fill `nums1` from the back, comparing the largest remaining elements of both arrays. `O(M+N)` time, `O(1)` space.
 
+### Day 4 — Arrays
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Find the Duplicate Number](Day4/1_find_the_duplicate_in_an_array.py) | Brute force, Better, Optimal | O(N) | O(1) |
+| 2 | [Repeating and Missing Numbers](Day4/2_find_the_repeating_and_missing_numbers.py) | Brute force, Better, Optimal | O(N) | O(1) |
+| 3 | [Count Inversions](Day4/3_count_inversions_in_an_array.py) | Brute force, Optimal | O(N log N) | O(N) |
+
+#### 1. Find the Duplicate Number
+Given `N+1` integers in the range `[1, N]`, find the single repeated number.
+- **Brute force** — sort, then scan for adjacent equal elements. `O(N log N)` time, `O(1)` space.
+- **Better** — count frequencies in a hash array, return the first value seen twice. `O(N)` time, `O(N)` space.
+- **Optimal** — Floyd's cycle detection (slow/fast pointers) treating values as next-node links. `O(N)` time, `O(1)` space.
+
+#### 2. Find the Repeating and Missing Numbers
+In an array of `[1, N]` with one number repeated and one missing, find both.
+- **Brute force** — count occurrences of each value `1..N`. `O(N²)` time, `O(1)` space.
+- **Better** — tally frequencies in a hash array, then scan for the count-2 and count-0 values. `O(N)` time, `O(N)` space.
+- **Optimal (math)** — solve from the sum and sum-of-squares differences. `O(N)` time, `O(1)` space.
+- **Optimal (XOR)** — XOR all elements and `1..N`, split by a differing bit to isolate both numbers. `O(N)` time, `O(1)` space.
+
+#### 3. Count Inversions
+Count pairs `(i, j)` with `i < j` and `arr[i] > arr[j]`.
+- **Brute force** — check every pair. `O(N²)` time, `O(1)` space.
+- **Optimal** — merge sort, counting cross-pair inversions during each merge. `O(N log N)` time, `O(N)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -113,6 +143,9 @@ python3 Day2/3_stock_buy_and_sell.py
 python3 Day3/1_Rotate_omage_by_90_degree.py
 python3 Day3/2_merge_overlapping_sub_intervals.py
 python3 Day3/3_merge_two_sorted_arrays_without_extra_space.py
+python3 Day4/1_find_the_duplicate_in_an_array.py
+python3 Day4/2_find_the_repeating_and_missing_numbers.py
+python3 Day4/3_count_inversions_in_an_array.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
