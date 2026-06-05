@@ -25,10 +25,14 @@ SDESheet/
 │   ├── 1_Rotate_omage_by_90_degree.py                            # Rotate Image by 90°
 │   ├── 2_merge_overlapping_sub_intervals.py                      # Merge Overlapping Intervals
 │   └── 3_merge_two_sorted_arrays_without_extra_space.py          # Merge Two Sorted Arrays
-└── Day4/
-    ├── 1_find_the_duplicate_in_an_array.py                       # Find the Duplicate Number
-    ├── 2_find_the_repeating_and_missing_numbers.py               # Repeating and Missing Numbers
-    └── 3_count_inversions_in_an_array.py                         # Count Inversions
+├── Day4/
+│   ├── 1_find_the_duplicate_in_an_array.py                       # Find the Duplicate Number
+│   ├── 2_find_the_repeating_and_missing_numbers.py               # Repeating and Missing Numbers
+│   └── 3_count_inversions_in_an_array.py                         # Count Inversions
+└── Day5/
+    ├── 1_search_in_a_sorted_2d_matrix.py                         # Search in a Sorted 2D Matrix
+    ├── 2_x_raised_to_the_power_n.py                              # Pow(x, n)
+    └── 3_majority_element_that_occurs_more_than_half_of_n_times.py  # Majority Element (> N/2)
 ```
 
 ## Problems
@@ -130,6 +134,31 @@ Count pairs `(i, j)` with `i < j` and `arr[i] > arr[j]`.
 - **Brute force** — check every pair. `O(N²)` time, `O(1)` space.
 - **Optimal** — merge sort, counting cross-pair inversions during each merge. `O(N log N)` time, `O(N)` space.
 
+### Day 5 — Search & Math
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Search in a Sorted 2D Matrix](Day5/1_search_in_a_sorted_2d_matrix.py) | Brute force, Better, Optimal | O(log(M·N)) | O(1) |
+| 2 | [Pow(x, n)](Day5/2_x_raised_to_the_power_n.py) | Brute force, Optimal | O(log N) | O(log N) |
+| 3 | [Majority Element (> N/2)](Day5/3_majority_element_that_occurs_more_than_half_of_n_times.py) | Brute force, Better, Optimal | O(N) | O(1) |
+
+#### 1. Search in a Sorted 2D Matrix
+Search for a target in a matrix where each row is sorted and the first element of each row exceeds the last of the previous.
+- **Brute force** — scan every cell. `O(M·N)` time, `O(1)` space.
+- **Better** — pick the candidate row by range, then binary search it. `O(M + log N)` time, `O(1)` space.
+- **Optimal** — treat the matrix as one flattened sorted array and binary search it. `O(log(M·N))` time, `O(1)` space.
+
+#### 2. Pow(x, n)
+Compute `x` raised to the power `n`.
+- **Brute force** — multiply `x` by itself `|n|` times, inverting for negative `n`. `O(N)` time, `O(1)` space.
+- **Optimal** — binary exponentiation: square the base and halve the exponent. `O(log N)` time, `O(log N)` space (recursion).
+
+#### 3. Majority Element (> N/2 times)
+Find the element appearing more than `N/2` times.
+- **Brute force** — count occurrences of each element. `O(N²)` time, `O(1)` space.
+- **Better** — tally counts in a hash map, return the one exceeding `N/2`. `O(N)` time, `O(N)` space.
+- **Optimal** — Boyer–Moore voting algorithm, with a final verification pass. `O(N)` time, `O(1)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -146,6 +175,9 @@ python3 Day3/3_merge_two_sorted_arrays_without_extra_space.py
 python3 Day4/1_find_the_duplicate_in_an_array.py
 python3 Day4/2_find_the_repeating_and_missing_numbers.py
 python3 Day4/3_count_inversions_in_an_array.py
+python3 Day5/1_search_in_a_sorted_2d_matrix.py
+python3 Day5/2_x_raised_to_the_power_n.py
+python3 Day5/3_majority_element_that_occurs_more_than_half_of_n_times.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
