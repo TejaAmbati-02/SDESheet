@@ -29,10 +29,14 @@ SDESheet/
 │   ├── 1_find_the_duplicate_in_an_array.py                       # Find the Duplicate Number
 │   ├── 2_find_the_repeating_and_missing_numbers.py               # Repeating and Missing Numbers
 │   └── 3_count_inversions_in_an_array.py                         # Count Inversions
-└── Day5/
-    ├── 1_search_in_a_sorted_2d_matrix.py                         # Search in a Sorted 2D Matrix
-    ├── 2_x_raised_to_the_power_n.py                              # Pow(x, n)
-    └── 3_majority_element_that_occurs_more_than_half_of_n_times.py  # Majority Element (> N/2)
+├── Day5/
+│   ├── 1_search_in_a_sorted_2d_matrix.py                         # Search in a Sorted 2D Matrix
+│   ├── 2_x_raised_to_the_power_n.py                              # Pow(x, n)
+│   └── 3_majority_element_that_occurs_more_than_half_of_n_times.py  # Majority Element (> N/2)
+└── Day6/
+    ├── 1_find_elements_that_appears_more_than_N_of_3_times.py    # Majority Element (> N/3)
+    ├── 2_grid_unique_paths.py                                    # Grid Unique Paths
+    └── 3_count_reverse_pairs.py                                  # Count Reverse Pairs
 ```
 
 ## Problems
@@ -159,6 +163,28 @@ Find the element appearing more than `N/2` times.
 - **Better** — tally counts in a hash map, return the one exceeding `N/2`. `O(N)` time, `O(N)` space.
 - **Optimal** — Boyer–Moore voting algorithm, with a final verification pass. `O(N)` time, `O(1)` space.
 
+### Day 6 — Arrays & DP
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Majority Element (> N/3)](Day6/1_find_elements_that_appears_more_than_N_of_3_times.py) | Brute force, Better, Optimal | O(N) | O(1) |
+| 2 | [Grid Unique Paths](Day6/2_grid_unique_paths.py) | Optimal (DP) | O(M·N) | O(N) |
+| 3 | [Count Reverse Pairs](Day6/3_count_reverse_pairs.py) | Optimal | O(N log N) | O(N) |
+
+#### 1. Majority Element (> N/3 times)
+Find all elements appearing more than `N/3` times (at most two).
+- **Brute force** — count occurrences of each element, skipping ones already added. `O(N²)` time, `O(1)` space.
+- **Better** — tally counts in a hash map, collect those reaching `N/3 + 1`. `O(N)` time, `O(N)` space.
+- **Optimal** — extended Boyer–Moore voting with two candidates, then a verification pass. `O(N)` time, `O(1)` space.
+
+#### 2. Grid Unique Paths
+Count the distinct paths from the top-left to the bottom-right of an `M × N` grid, moving only right or down.
+- **Optimal (DP)** — roll a single row, accumulating `up + left` for each cell. `O(M·N)` time, `O(N)` space.
+
+#### 3. Count Reverse Pairs
+Count pairs `(i, j)` with `i < j` and `arr[i] > 2 · arr[j]`.
+- **Optimal** — merge sort, counting qualifying cross pairs before each merge. `O(N log N)` time, `O(N)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -178,6 +204,9 @@ python3 Day4/3_count_inversions_in_an_array.py
 python3 Day5/1_search_in_a_sorted_2d_matrix.py
 python3 Day5/2_x_raised_to_the_power_n.py
 python3 Day5/3_majority_element_that_occurs_more_than_half_of_n_times.py
+python3 Day6/1_find_elements_that_appears_more_than_N_of_3_times.py
+python3 Day6/2_grid_unique_paths.py
+python3 Day6/3_count_reverse_pairs.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
