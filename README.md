@@ -33,10 +33,14 @@ SDESheet/
 │   ├── 1_search_in_a_sorted_2d_matrix.py                         # Search in a Sorted 2D Matrix
 │   ├── 2_x_raised_to_the_power_n.py                              # Pow(x, n)
 │   └── 3_majority_element_that_occurs_more_than_half_of_n_times.py  # Majority Element (> N/2)
-└── Day6/
-    ├── 1_find_elements_that_appears_more_than_N_of_3_times.py    # Majority Element (> N/3)
-    ├── 2_grid_unique_paths.py                                    # Grid Unique Paths
-    └── 3_count_reverse_pairs.py                                  # Count Reverse Pairs
+├── Day6/
+│   ├── 1_find_elements_that_appears_more_than_N_of_3_times.py    # Majority Element (> N/3)
+│   ├── 2_grid_unique_paths.py                                    # Grid Unique Paths
+│   └── 3_count_reverse_pairs.py                                  # Count Reverse Pairs
+└── Day7/
+    ├── 1_two_sum.py                                              # Two Sum
+    ├── 2_four_sum.py                                             # 4Sum
+    └── 3_longest_consecutive_sequence_in_array.py               # Longest Consecutive Sequence
 ```
 
 ## Problems
@@ -185,6 +189,26 @@ Count the distinct paths from the top-left to the bottom-right of an `M × N` gr
 Count pairs `(i, j)` with `i < j` and `arr[i] > 2 · arr[j]`.
 - **Optimal** — merge sort, counting qualifying cross pairs before each merge. `O(N log N)` time, `O(N)` space.
 
+### Day 7 — Two Pointers & Hashing
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Two Sum](Day7/1_two_sum.py) | Optimal | O(N log N) | O(N) |
+| 2 | [4Sum](Day7/2_four_sum.py) | Optimal | O(N³) | O(1) |
+| 3 | [Longest Consecutive Sequence](Day7/3_longest_consecutive_sequence_in_array.py) | Optimal | O(N) | O(N) |
+
+#### 1. Two Sum
+Find whether two elements sum to a target — both as a yes/no check and returning their indices.
+- **Optimal** — pair each value with its index, sort by value, then close in with two pointers from both ends. `O(N log N)` time, `O(N)` space.
+
+#### 2. 4Sum
+Find all unique quadruplets that sum to the target.
+- **Optimal** — sort, fix the first two elements with deduping, then two-pointer scan the rest, skipping duplicates. `O(N³)` time, `O(1)` space (excluding output).
+
+#### 3. Longest Consecutive Sequence
+Find the length of the longest run of consecutive integers in an unsorted array.
+- **Optimal** — load values into a set, start a count only at sequence heads (no value one less present), and extend forward. `O(N)` time, `O(N)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -207,6 +231,9 @@ python3 Day5/3_majority_element_that_occurs_more_than_half_of_n_times.py
 python3 Day6/1_find_elements_that_appears_more_than_N_of_3_times.py
 python3 Day6/2_grid_unique_paths.py
 python3 Day6/3_count_reverse_pairs.py
+python3 Day7/1_two_sum.py
+python3 Day7/2_four_sum.py
+python3 Day7/3_longest_consecutive_sequence_in_array.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
