@@ -37,10 +37,22 @@ SDESheet/
 │   ├── 1_find_elements_that_appears_more_than_N_of_3_times.py    # Majority Element (> N/3)
 │   ├── 2_grid_unique_paths.py                                    # Grid Unique Paths
 │   └── 3_count_reverse_pairs.py                                  # Count Reverse Pairs
-└── Day7/
-    ├── 1_two_sum.py                                              # Two Sum
-    ├── 2_four_sum.py                                             # 4Sum
-    └── 3_longest_consecutive_sequence_in_array.py               # Longest Consecutive Sequence
+├── Day7/
+│   ├── 1_two_sum.py                                              # Two Sum
+│   ├── 2_four_sum.py                                             # 4Sum
+│   └── 3_longest_consecutive_sequence_in_array.py               # Longest Consecutive Sequence
+├── Day8/
+│   ├── 1_length_of_longest_subarray_with_zero_sum.py            # Longest Subarray with Sum Zero
+│   ├── 2_count_the_number_of_subarrays_with_given_xor_K.py      # Subarrays with XOR K
+│   └── 3_length_of_longest_substring_without_any_repeating_character.py  # Longest Substring Without Repeats
+├── Day9/
+│   ├── 1_reverse_ll.py                                           # Reverse a Linked List
+│   ├── 2_find_middle_of_ll.py                                    # Middle of a Linked List
+│   └── 3_merge_two_sorted_lists.py                              # Merge Two Sorted Lists
+└── Day10/
+    ├── 1_remove_N_th_node_from_the_end_of_a_Linked_List.py      # Remove Nth Node From End
+    ├── 2_add_2_numbsers_represented_as_ll.py                    # Add Two Numbers
+    └── 3_delete_given_node_in_a_ll.py                           # Delete a Given Node
 ```
 
 ## Problems
@@ -209,6 +221,66 @@ Find all unique quadruplets that sum to the target.
 Find the length of the longest run of consecutive integers in an unsorted array.
 - **Optimal** — load values into a set, start a count only at sequence heads (no value one less present), and extend forward. `O(N)` time, `O(N)` space.
 
+### Day 8 — Prefix Sums & Hashing
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Longest Subarray with Sum Zero](Day8/1_length_of_longest_subarray_with_zero_sum.py) | Optimal | O(N) | O(N) |
+| 2 | [Subarrays with XOR K](Day8/2_count_the_number_of_subarrays_with_given_xor_K.py) | Optimal | O(N) | O(N) |
+| 3 | [Longest Substring Without Repeating Characters](Day8/3_length_of_longest_substring_without_any_repeating_character.py) | Optimal | O(N) | O(1) |
+
+#### 1. Longest Subarray with Sum Zero
+Find the length of the longest contiguous subarray that sums to zero.
+- **Optimal** — track running prefix sums in a hash map; when a sum repeats (or hits zero), the span between is a zero-sum subarray. `O(N)` time, `O(N)` space.
+
+#### 2. Count Subarrays with XOR K
+Count the contiguous subarrays whose XOR equals `K`.
+- **Optimal** — keep prefix-XOR frequencies in a hash map; for each prefix, add the count of the complementary prefix (`prefix ^ K`). `O(N)` time, `O(N)` space.
+
+#### 3. Longest Substring Without Repeating Characters
+Find the length of the longest substring with all distinct characters.
+- **Optimal** — sliding window with a last-seen index per character; jump the left bound past any repeat. `O(N)` time, `O(1)` space (fixed 256-char table).
+
+### Day 9 — Linked Lists
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Reverse a Linked List](Day9/1_reverse_ll.py) | Optimal (recursive) | O(N) | O(N) |
+| 2 | [Middle of a Linked List](Day9/2_find_middle_of_ll.py) | Optimal | O(N) | O(1) |
+| 3 | [Merge Two Sorted Lists](Day9/3_merge_two_sorted_lists.py) | Optimal | O(M+N) | O(1) |
+
+#### 1. Reverse a Linked List
+Reverse a singly linked list.
+- **Optimal (recursive)** — recurse to the tail, then flip each `next` pointer on the way back. `O(N)` time, `O(N)` space (call stack).
+
+#### 2. Middle of a Linked List
+Return the middle node of a linked list.
+- **Optimal** — slow/fast pointers; when fast reaches the end, slow sits at the middle. `O(N)` time, `O(1)` space.
+
+#### 3. Merge Two Sorted Lists
+Merge two sorted linked lists into one sorted list.
+- **Optimal** — splice nodes onto a dummy head, always taking the smaller front, then attach the remaining tail. `O(M+N)` time, `O(1)` space.
+
+### Day 10 — Linked Lists
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Remove Nth Node From End](Day10/1_remove_N_th_node_from_the_end_of_a_Linked_List.py) | Optimal | O(N) | O(1) |
+| 2 | [Add Two Numbers](Day10/2_add_2_numbsers_represented_as_ll.py) | Optimal | O(max(M,N)) | O(1) |
+| 3 | [Delete a Given Node](Day10/3_delete_given_node_in_a_ll.py) | Optimal | O(1) | O(1) |
+
+#### 1. Remove Nth Node From End
+Remove the `N`th node counting from the end of the list.
+- **Optimal** — advance a fast pointer `N+1` steps ahead of a slow one from a dummy head, then move both until fast falls off; slow now precedes the target. `O(N)` time, `O(1)` space.
+
+#### 2. Add Two Numbers
+Add two numbers stored as digit-per-node linked lists (least significant first).
+- **Optimal** — walk both lists together, summing with a carry and building the result on a dummy head. `O(max(M,N))` time, `O(1)` space (excluding output).
+
+#### 3. Delete a Given Node
+Delete a node given only a reference to it (not the head).
+- **Optimal** — copy the next node's value into this node, then unlink the next node. `O(1)` time, `O(1)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -234,6 +306,15 @@ python3 Day6/3_count_reverse_pairs.py
 python3 Day7/1_two_sum.py
 python3 Day7/2_four_sum.py
 python3 Day7/3_longest_consecutive_sequence_in_array.py
+python3 Day8/1_length_of_longest_subarray_with_zero_sum.py
+python3 Day8/2_count_the_number_of_subarrays_with_given_xor_K.py
+python3 Day8/3_length_of_longest_substring_without_any_repeating_character.py
+python3 Day9/1_reverse_ll.py
+python3 Day9/2_find_middle_of_ll.py
+python3 Day9/3_merge_two_sorted_lists.py
+python3 Day10/1_remove_N_th_node_from_the_end_of_a_Linked_List.py
+python3 Day10/2_add_2_numbsers_represented_as_ll.py
+python3 Day10/3_delete_given_node_in_a_ll.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
