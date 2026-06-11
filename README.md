@@ -49,10 +49,14 @@ SDESheet/
 │   ├── 1_reverse_ll.py                                           # Reverse a Linked List
 │   ├── 2_find_middle_of_ll.py                                    # Middle of a Linked List
 │   └── 3_merge_two_sorted_lists.py                              # Merge Two Sorted Lists
-└── Day10/
-    ├── 1_remove_N_th_node_from_the_end_of_a_Linked_List.py      # Remove Nth Node From End
-    ├── 2_add_2_numbsers_represented_as_ll.py                    # Add Two Numbers
-    └── 3_delete_given_node_in_a_ll.py                           # Delete a Given Node
+├── Day10/
+│   ├── 1_remove_N_th_node_from_the_end_of_a_Linked_List.py      # Remove Nth Node From End
+│   ├── 2_add_2_numbsers_represented_as_ll.py                    # Add Two Numbers
+│   └── 3_delete_given_node_in_a_ll.py                           # Delete a Given Node
+└── Day11/
+    ├── 1_find_intersection_of_two_linked_lists.py              # Intersection of Two Linked Lists
+    ├── 2_detect_a_cycle_in_linked_list.py                      # Detect a Cycle in a Linked List
+    └── 3_reverse_ll_in_group_of_size_k.py                      # Reverse Nodes in k-Group
 ```
 
 ## Problems
@@ -281,6 +285,26 @@ Add two numbers stored as digit-per-node linked lists (least significant first).
 Delete a node given only a reference to it (not the head).
 - **Optimal** — copy the next node's value into this node, then unlink the next node. `O(1)` time, `O(1)` space.
 
+### Day 11 — Linked Lists
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Intersection of Two Linked Lists](Day11/1_find_intersection_of_two_linked_lists.py) | Optimal | O(M+N) | O(1) |
+| 2 | [Detect a Cycle in a Linked List](Day11/2_detect_a_cycle_in_linked_list.py) | Hashing | O(N) | O(N) |
+| 3 | [Reverse Nodes in k-Group](Day11/3_reverse_ll_in_group_of_size_k.py) | Optimal | O(N) | O(1) |
+
+#### 1. Intersection of Two Linked Lists
+Find the node where two singly linked lists merge, if any.
+- **Optimal** — walk both lists with two pointers, redirecting each to the other list's head on reaching the end; they align at the intersection (or both at `None`) after equalising the path lengths. `O(M+N)` time, `O(1)` space.
+
+#### 2. Detect a Cycle in a Linked List
+Determine whether the list contains a cycle.
+- **Hashing** — record each visited node in a set; a node seen twice means a loop. `O(N)` time, `O(N)` space.
+
+#### 3. Reverse Nodes in k-Group
+Reverse the list in consecutive groups of `k`, leaving a trailing remainder untouched.
+- **Optimal** — for each full group, locate the `k`th node, reverse the group's links in place, then splice it back between the surrounding nodes via a dummy head. `O(N)` time, `O(1)` space.
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -315,6 +339,9 @@ python3 Day9/3_merge_two_sorted_lists.py
 python3 Day10/1_remove_N_th_node_from_the_end_of_a_Linked_List.py
 python3 Day10/2_add_2_numbsers_represented_as_ll.py
 python3 Day10/3_delete_given_node_in_a_ll.py
+python3 Day11/1_find_intersection_of_two_linked_lists.py
+python3 Day11/2_detect_a_cycle_in_linked_list.py
+python3 Day11/3_reverse_ll_in_group_of_size_k.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
