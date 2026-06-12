@@ -53,10 +53,14 @@ SDESheet/
 │   ├── 1_remove_N_th_node_from_the_end_of_a_Linked_List.py      # Remove Nth Node From End
 │   ├── 2_add_2_numbsers_represented_as_ll.py                    # Add Two Numbers
 │   └── 3_delete_given_node_in_a_ll.py                           # Delete a Given Node
-└── Day11/
-    ├── 1_find_intersection_of_two_linked_lists.py              # Intersection of Two Linked Lists
-    ├── 2_detect_a_cycle_in_linked_list.py                      # Detect a Cycle in a Linked List
-    └── 3_reverse_ll_in_group_of_size_k.py                      # Reverse Nodes in k-Group
+├── Day11/
+│   ├── 1_find_intersection_of_two_linked_lists.py              # Intersection of Two Linked Lists
+│   ├── 2_detect_a_cycle_in_linked_list.py                      # Detect a Cycle in a Linked List
+│   └── 3_reverse_ll_in_group_of_size_k.py                      # Reverse Nodes in k-Group
+└── Day12/
+    ├── 1_check_given_ll_is_palindrome.py                       # Palindrome Linked List
+    ├── 2_startingpoint_of_loop_in_ll.py                        # Starting Point of Loop in a Linked List
+    └── 3_flattening_of_ll.py                                   # Flattening a Linked List
 ```
 
 ## Problems
@@ -305,6 +309,26 @@ Determine whether the list contains a cycle.
 Reverse the list in consecutive groups of `k`, leaving a trailing remainder untouched.
 - **Optimal** — for each full group, locate the `k`th node, reverse the group's links in place, then splice it back between the surrounding nodes via a dummy head. `O(N)` time, `O(1)` space.
 
+### Day 12 — Linked Lists
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Palindrome Linked List](Day12/1_check_given_ll_is_palindrome.py) | Optimal | O(N) | O(1) |
+| 2 | [Starting Point of Loop in a Linked List](Day12/2_startingpoint_of_loop_in_ll.py) | Optimal | O(N) | O(1) |
+| 3 | [Flattening a Linked List](Day12/3_flattening_of_ll.py) | Optimal (recursive) | O(N·M) | O(N) |
+
+#### 1. Palindrome Linked List
+Check whether a singly linked list reads the same forwards and backwards.
+- **Optimal** — find the middle with slow/fast pointers, reverse the second half in place, then walk both halves comparing values. `O(N)` time, `O(1)` space.
+
+#### 2. Starting Point of Loop in a Linked List
+Find the node where the cycle begins, if one exists.
+- **Optimal** — Floyd's cycle detection: advance slow/fast until they meet, then reset one pointer to the head and move both one step at a time; they meet at the loop's start. `O(N)` time, `O(1)` space.
+
+#### 3. Flattening a Linked List
+Flatten a list where each node has a `next` pointer and a sorted `child` (bottom) list into a single sorted list along the `child` pointers.
+- **Optimal (recursive)** — recurse to flatten the list to the right, then merge the current vertical list with the already-flattened remainder. `O(N·M)` time, `O(N)` space (recursion).
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -342,6 +366,9 @@ python3 Day10/3_delete_given_node_in_a_ll.py
 python3 Day11/1_find_intersection_of_two_linked_lists.py
 python3 Day11/2_detect_a_cycle_in_linked_list.py
 python3 Day11/3_reverse_ll_in_group_of_size_k.py
+python3 Day12/1_check_given_ll_is_palindrome.py
+python3 Day12/2_startingpoint_of_loop_in_ll.py
+python3 Day12/3_flattening_of_ll.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
