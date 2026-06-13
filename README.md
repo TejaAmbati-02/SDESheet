@@ -57,10 +57,14 @@ SDESheet/
 │   ├── 1_find_intersection_of_two_linked_lists.py              # Intersection of Two Linked Lists
 │   ├── 2_detect_a_cycle_in_linked_list.py                      # Detect a Cycle in a Linked List
 │   └── 3_reverse_ll_in_group_of_size_k.py                      # Reverse Nodes in k-Group
-└── Day12/
-    ├── 1_check_given_ll_is_palindrome.py                       # Palindrome Linked List
-    ├── 2_startingpoint_of_loop_in_ll.py                        # Starting Point of Loop in a Linked List
-    └── 3_flattening_of_ll.py                                   # Flattening a Linked List
+├── Day12/
+│   ├── 1_check_given_ll_is_palindrome.py                       # Palindrome Linked List
+│   ├── 2_startingpoint_of_loop_in_ll.py                        # Starting Point of Loop in a Linked List
+│   └── 3_flattening_of_ll.py                                   # Flattening a Linked List
+└── Day13/
+    ├── 1_rotate_a_ll.py                                        # Rotate a Linked List
+    ├── 2_clone_a_ll_with_random_and_next_pointer.py            # Clone a Linked List with Random Pointer
+    └── 3_3sum.py                                               # 3Sum
 ```
 
 ## Problems
@@ -329,6 +333,28 @@ Find the node where the cycle begins, if one exists.
 Flatten a list where each node has a `next` pointer and a sorted `child` (bottom) list into a single sorted list along the `child` pointers.
 - **Optimal (recursive)** — recurse to flatten the list to the right, then merge the current vertical list with the already-flattened remainder. `O(N·M)` time, `O(N)` space (recursion).
 
+### Day 13 — Linked Lists & Arrays
+
+| # | Problem | Approaches | Best Time | Best Space |
+|---|---------|------------|-----------|------------|
+| 1 | [Rotate a Linked List](Day13/1_rotate_a_ll.py) | Optimal | O(N) | O(1) |
+| 2 | [Clone a Linked List with Random Pointer](Day13/2_clone_a_ll_with_random_and_next_pointer.py) | Better, Optimal | O(N) | O(1) |
+| 3 | [3Sum](Day13/3_3sum.py) | Brute force, Optimal | O(N²) | O(1) |
+
+#### 1. Rotate a Linked List
+Rotate the list to the right by `k` places.
+- **Optimal** — find the `(N-k%N)`th node by making the list circular, then break it at the new tail to form the rotated list. `O(N)` time, `O(1)` space.
+
+#### 2. Clone a Linked List with Random Pointer
+Deep-copy a linked list where each node has a `next` and an arbitrary `random` pointer.
+- **Better** — store old-to-new node mapping in a hash map; assign `next` and `random` in a second pass. `O(N)` time, `O(N)` space.
+- **Optimal** — interleave cloned nodes directly after their originals, wire `random` pointers using the interleaving, then separate the two lists. `O(N)` time, `O(1)` space.
+
+#### 3. 3Sum
+Find all unique triplets in the array that sum to zero.
+- **Brute force** — three nested loops, collect unique triplets via a set. `O(N³)` time, `O(1)` space (excluding output).
+- **Optimal** — sort, fix the first element, then use two pointers for the remaining pair; skip duplicates at each level. `O(N²)` time, `O(1)` space (excluding output).
+
 ## Running
 
 Each file is self-contained and runs the included sample driver:
@@ -369,6 +395,9 @@ python3 Day11/3_reverse_ll_in_group_of_size_k.py
 python3 Day12/1_check_given_ll_is_palindrome.py
 python3 Day12/2_startingpoint_of_loop_in_ll.py
 python3 Day12/3_flattening_of_ll.py
+python3 Day13/1_rotate_a_ll.py
+python3 Day13/2_clone_a_ll_with_random_and_next_pointer.py
+python3 Day13/3_3sum.py
 ```
 
 The matrix file has no `.py` extension; run it explicitly through Python:
